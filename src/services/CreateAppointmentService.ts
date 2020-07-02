@@ -3,6 +3,7 @@ import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
 import appointment from '../models/appointment';
 import AppointmentsRepository from '../repositories/appointmentsRepository';
+import AppError from '../errors/AppError';
 
 interface Request {
   provider_id: string;
@@ -22,7 +23,7 @@ class CreateAppointmentService {
     if (findAppointmentInSameDate) {
       // não se tem acesso ao rquest, response dietamente no service
       // return response.status(400).json({message: "This appointment is already booked."});
-      throw Error('This appointment is already booked.');
+      throw AppError('This appointment is already booked.');
     }
 
     // o comando abaixo apenas cria a instância do objeto, mas não o salva no banco de dados
