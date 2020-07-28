@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 
 import routes from './routes';
@@ -10,6 +11,9 @@ import AppError from './errors/AppError';
 import './database';
 
 const app = express();
+
+// o cors é um elemento de segurança para as requisições feitas através de um browser, não é usado para Insomnia nem react-native
+app.use(cors());
 app.use(express.json());
 
 // para acessar os arquivos pelo browser localgost:3333/files/nome_do_arquivo
