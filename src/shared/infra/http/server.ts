@@ -9,6 +9,7 @@ import routes from './routes';
 
 // executa a crição da conexão com a base de dados
 import '@shared/infra/typeorm';
+import '@shared/container';
 
 const app = express();
 
