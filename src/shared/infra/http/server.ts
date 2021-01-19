@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // para acessar os arquivos pelo browser localgost:3333/files/nome_do_arquivo
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
 
