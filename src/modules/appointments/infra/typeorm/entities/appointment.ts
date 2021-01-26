@@ -16,12 +16,21 @@ class Appointment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  // it is a database column
   @Column()
   provider_id: string;
 
+  // it is a relation between columns but only in the javascript code.
   @ManyToOne(() => User)
   @JoinColumn({ name: 'provider_id' })
   provider: User;
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @Column('timestamp with time zone')
   date: Date;
