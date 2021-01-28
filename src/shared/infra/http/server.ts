@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import 'express-async-errors';
+import { errors } from 'celebrate';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.use(routes);
+
+app.use(errors());
 
 // middleware para tratamento global dos erros
 // abaixo a função next foi renomeada para _ para que o eslint a ignore (tem que ter uma rule no eslintrc)
