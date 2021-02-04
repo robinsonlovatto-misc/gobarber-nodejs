@@ -8,6 +8,7 @@ import { errors } from 'celebrate';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
+import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
 
 // executa a crição da conexão com a base de dados
@@ -15,6 +16,8 @@ import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
+
+app.use(rateLimiter);
 
 // o cors é um elemento de segurança para as requisições feitas através de um browser, não é usado para Insomnia nem react-native
 app.use(cors());
