@@ -17,14 +17,15 @@ import '@shared/container';
 
 const app = express();
 
-app.use(rateLimiter);
-
 // o cors é um elemento de segurança para as requisições feitas através de um browser, não é usado para Insomnia nem react-native
 app.use(cors());
 app.use(express.json());
 
 // para acessar os arquivos pelo browser localgost:3333/files/nome_do_arquivo
 app.use('/files', express.static(uploadConfig.uploadsFolder));
+
+// colocando o rateLimiter aqui, não irá fazer a requisição da imagem várias vezes
+app.use(rateLimiter);
 
 app.use(routes);
 
